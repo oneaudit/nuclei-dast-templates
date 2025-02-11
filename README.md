@@ -1,7 +1,7 @@
 <h1 align="center">
   Nuclei DAST Templates
 </h1>
-<h4 align="center">Nuclei <a href="https://github.com/projectdiscovery/nuclei-templates">templates</a> adapted to ...</h4>
+<h4 align="center">Nuclei <a href="https://github.com/projectdiscovery/nuclei-templates">templates</a> adapted to support arbitrary HTTP methods. </h4>
 
 When utilizing input file formats like burp or openapi with [Nuclei](https://github.com/projectdiscovery/nuclei), the tool automatically restricts execution to only dast templates, disabling all others. This limitation makes it difficult to test requests such as POST, PUT, and DELETE that include a body, as it necessitates writing new templates if we choose not to use the aforementioned file formats.
 
