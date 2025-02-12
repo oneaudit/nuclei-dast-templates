@@ -1,0 +1,2585 @@
+id: favicon-detect
+
+info:
+  author: anonymous
+  name: Test the favicon against known favicons
+  severity: info
+  tags: generic,favicon,tech,noisy
+
+http:
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+        condition: and
+
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: single
+        fuzz:
+          - ""
+
+    matchers-condition: or
+    matchers:
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b0a102991e7332643ae57365023c00c8"'
+        name: code-igniter
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "92c1d4e5252982e7ca42aaa969434a6b"'
+        name: fider
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1ba2ae710d927f13d483fd5d1e548c9b"'
+        name: vuejs
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6399cc480d494bf1fcd7d16c42b1c11b"'
+        name: penguin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "09b565a51e14b721a323f0ba44b2982a"'
+        name: google-web-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "506190fc55ceaa132f1bc305ed8472ca"'
+        name: socialtext
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2cc15cfae55e2bb2d85b57e5b5bc3371"'
+        name: phpwiki-1.3.14-gforge-4.6.99-svn6496-wiki
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "389a8816c5b87685de7d8d5fec96c85b"'
+        name: xoops-cms
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f1876a80546b3986dbb79bad727b0374"'
+        name: netscreen-webui-or-3com-router
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "226ffc5e483b85ec261654fe255e60be"'
+        name: netscape-4.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b25dbe60830705d98ba3aaf0568c456a"'
+        name: netscape-iplanet-6.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "41e2c893098b3ed9fc14b821a2e14e73"'
+        name: netscape-6.0-aol
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a28ebcac852795fe30d8e99a23d377c1"'
+        name: sunone-6.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "71e30c507ca3fa005e2d1322a5aa8fb2"'
+        name: apache-on-redhat
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d41d8cd98f00b204e9800998ecf8427e"'
+        name: zero-byte-favicon
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "dcea02a5797ce9e36f19b7590752563e"'
+        name: parallels-plesk
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6f767458b952d4755a795af0e4e0aa17"'
+        name: yahoo
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5b0e3b33aa166c88cee57f83de1d4e55"'
+        name: dotnetnuke-http
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7dbe9acc2ab6e64d59fa67637b1239df"'
+        name: lotus-domino
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e1e8bdc3ce87340ab6ebe467519cf245"'
+        name: wordpress
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6cec5a9c106d45e458fc680f70df91b0"'
+        name: wordpress-obsolete-version
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "81ed5fa6453cf406d1d82233ba355b9a"'
+        name: e-zekiel
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ecaa88f7fa0bf610a5a26cf545dcd3aa"'
+        name: 3-byte-invalid-favicon
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d7ac014e83b5c4a2dea76c50eaeda662"'
+        name: vbulletin-forum
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "edaaef7bbd3072a3a0c3fb3b29900bcb"'
+        name: powered-by-reynolds-web-solutions-car-sales-cms
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d99217782f41e71bcaa8e663e6302473"'
+        name: apache-on-red-hat-fedora
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a8fe5b8ae2c445a33ac41b33ccc9a120"'
+        name: arris-touchstone-device
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d16a0da12074dae41980a6918d33f031"'
+        name: st-605
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "befcded36aec1e59ea624582fcb3225c"'
+        name: speedtouch
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e4a509e78afca846cd0e6c0672797de5"'
+        name: i3micro-vrg
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "3541a8ed03d7a4911679009961a82675"'
+        name: status.net
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "fa2b274fab800af436ee688e97da4ac4"'
+        name: etherpad
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "83245b21512cc0a0e7a67c72c3a3f501"'
+        name: openxpki
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "85138f44d577b03dfc738d3f27e04992"'
+        name: gitweb
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "70625a6e60529a85cc51ad7da2d5580d"'
+        name: sslstrip
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "99306a52c76e19e3c298a46616c5899c"'
+        name: amule-2.2.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "31c16dd034e6985b4ba929e251200580"'
+        name: stephen-turner-analog-6.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2d4cca83cf14d1adae178ad013bdf65b"'
+        name: ant-docs-manual-1.7.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "032ecc47c22a91e7f3f1d28a45d7f7bc"'
+        name: ant-docs-1.7.1-libjakarta-poi-java-3.0.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "31aa07fe236ee504c890a61d1f7f0a97"'
+        name: apache2-2.2.9-docs-manual
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c0c4e7c0ac4da24ab8fc842d7f96723c"'
+        name: xsp-1.9.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d6923071afcee9cebcebc785da40b226"'
+        name: autopsy-2.08
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7513f4cf4802f546518f26ab5cfa1cad"'
+        name: axyl-2.6.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "de68f0ad7b37001b8241bce3887593c7"'
+        name: b2evolution-2.4.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "140e3eb3e173bfb8d15778a578a213aa"'
+        name: bmpx-0.40.14
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4f12cccd3c42a4a478f067337fe92794"'
+        name: cacti-0.8.7b
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c0533ae5d0ed638ba3fb3485d8250a28"'
+        name: cakephp-1.1.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "66b3119d379aee26ba668fef49188dd3"'
+        name: cakephp-1.2.x-1.3x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "09f5ea65a2d31da8976b9b9fd2bf853c"'
+        name: caudium-1.4.12
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f276b19aabcb4ae8cda4d22625c6735f"'
+        name: cgiirc-0.5.9
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a18421fbf34123c03fb8b3082e9d33c8"'
+        name: chora2-2.0.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "23426658f03969934b758b7eb9e8f602"'
+        name: chronicle-2.9-theme-steve
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "75069c2c6701b2be250c05ec494b1b31"'
+        name: chronicle-2.9-theme-blog.mail-scanning.com
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "27c3b07523efd6c318a201cac58008ba"'
+        name: cimg-1.2.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ae59960e866e2730e99799ac034eacf7"'
+        name: webcit-7.37
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2ab2aae806e8393b70970b2eaace82e0"'
+        name: couchdb-0.8.0-0.9.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ddd76f1cfe31499ce3db6702991cbc45"'
+        name: cream-0.41
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "74120b5bbc7be340887466ff6cfe66c6"'
+        name: cups-1.3.9-doc
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "abeea75cf3c1bac42bbd0e96803c72b9"'
+        name: doc-iana-20080601
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "3ef81fad2a3deaeb19f02c9cf67ed8eb"'
+        name: dokuwiki-0.0.20080505
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e6a9dc66179d8c9f34288b16a02f987e"'
+        name: drupal-cms-5.10
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "bba9f1c29f100d265865626541b20a50"'
+        name: dtc-0.28.10
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "171429057ae2d6ad68e2cd6dcfd4adc1"'
+        name: ebug-http-0.31
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f6e9339e652b8655d4e26f3e947cf212"'
+        name: egroupware-1.0.0.009-1.4.004-2-phpgwapi-templates-idots-images-favicon.ico
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "093551287f13e0ee3805fee23c6f0e12"'
+        name: freevo-1.8.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "56753c5386a70edba6190d49252f00bb"'
+        name: gallery-1.5.8
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "54b299f2f1c8b56c8c495f2ded6e3e0b"'
+        name: garlic-doc-1.6
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "857281e82ea34abbb79b9b9c752e33d2"'
+        name: gforge-4.6.99-svn6496-webcalendar
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "27a097ec0dbffb7db436384635d50415"'
+        name: gforge-4.6.99-svn6496-images
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0e14c2f52b93613b5d1527802523b23f"'
+        name: gforge-4.6.99-svn6496
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c9339a2ecde0980f40ba22c2d237b94b"'
+        name: glpi-0.70.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "db1e3fe4a9ba1be201e913f9a401d794"'
+        name: gollem-1.0.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "921042508f011ae477d5d91b2a90d03f"'
+        name: gonzui-1.2-cvs20070129
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ecab73f909ddd28e482ababe810447c8"'
+        name: gosa-2.5.16.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c16b0a5c9eb3bfd831349739d89704ec"'
+        name: gramps-3.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "63d5627fc659adfdd5b902ecafe9100f"'
+        name: gsoap-2.7.9l
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "462794b1165c44409861fcad7e185631"'
+        name: hercules-3.05
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "3995c585b76bd5aa67cb6385431d378a"'
+        name: horde-sam-0.1-cvs20080316-silver
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ee3d6a9227e27a5bc72db3184dab8303"'
+        name: horde-sam-0.1-cvs20080316-graphics
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7cc1a052c86cc3d487957f7092a6d8c3"'
+        name: horde-3.2.1-graphics-tango
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5e99522b02f6ecadbb3665202357d775"'
+        name: hplip-2.8.7-installer
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "39308a30527336e59d1d166d48c7742c"'
+        name: hewlett-packard-hplip-2.8.7-doc
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "43d4aa56dc796067b442c95976a864fd"'
+        name: hunchentoot-0.15.7
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "32bf63ac2d3cfe82425ce8836c9ce87c"'
+        name: ikiwiki-2.56ubuntu1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f567fd4927f9693a7a2d6cacf21b51b6"'
+        name: horde-imp-4.1.4-4.1.6-also-used-in-horde-groupware-webmail-1.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "919e132a62ea07fce13881470ba70293"'
+        name: horde-groupware-webmail-1.0.1-ingo-theme-1.1.5
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ed7d5c39c69262f4ba95418d4f909b10"'
+        name: jetty-5.1.14
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6900fab05a50a99d284405f46e5bc7f6"'
+        name: k3d-0.6.7.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "24d1e355c00e79dc13b84d5455534fe7"'
+        name: kdelibs-3.5.10-4.1.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8ab2f1a55bcb0cac227828afd5927d39"'
+        name: kdenetwork-4.1.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "54667bea91124121e98da49e55244935"'
+        name: kolab-webadmin-2.1.0-20070510
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a5b126cdeaa3081f77a22b3e43730942"'
+        name: horde-groupware-webmail-1.0.1-kronolith-theme-2.1.8
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d00d85c8fb3a11170c1280c454398d51"'
+        name: ktorrent-3.1.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "fa21ab1b1e1b4c9516afbd63e91275a9"'
+        name: lastfmproxy-1.3b
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "663ee93a41000b8959d6145f0603f599"'
+        name: ldap-account-manager-2.3.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ea84a69cb146a947fac2ac7af3946297"'
+        name: boost-1.34.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "eb3e307f44581916d9f1197df2fc9de3"'
+        name: flac-1.2.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "669bc10baf11b43391294aac3e1b8c52"'
+        name: libitpp-4.0.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b8fe2ec1fcc0477c0d0f00084d824071"'
+        name: lucene-2.3.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "12225e325909cee70c31f5a7ab2ee194"'
+        name: ramaze-ruby-0.3.9.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6be5ebd07e37d0b415ec83396a077312"'
+        name: ramaze-ruby-0.3.9.1-dispatcher
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "20e208bb83f3eeed7c1aa8a6d9d3229d"'
+        name: libswarmcache-java-1.0rc2-cvs20071027
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5f8b52715c08dfc7826dad181c71dec8"'
+        name: mahara-1.0.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ebe293e1746858d2548bca99c43e4969"'
+        name: mantis-bug-tracker-1.1.2-bugs-images-favicon.ico
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0d42576d625920bcd121261fc5a6230b"'
+        name: mathomatic-14.0.6
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f972c37bf444fb1925a2c97812e2c1eb"'
+        name: mediatomb-0.11.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f5f2df7eec0d1c3c10b58960f3f8fb26"'
+        name: horde-groupware-webmail-1.0.1-mnemo-theme-2.1.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "933a83c6e9e47bd1e38424f3789d121d"'
+        name: moodle-1.8.2-1.9.x-multiple-default-themes
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b6652d5d71f6f04a88a8443a8821510f"'
+        name: moodle-1.8.2-1.9.x-cornflower-theme-theme-cornflower-favicon.ico
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "06b60d90ccfb79c2574c7fdc3ac23f05"'
+        name: movabletype-opensource-4.2-rc4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "21d80d9730a56b26dc9d252ffabb2987"'
+        name: mythplugins-0.21.0-fixes18722
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "81df3601d6dc13cbc6bd8212ef50dd29"'
+        name: horde-groupware-webmail-1.0.1-nag-theme-2.1.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1c4201c7da53d6c7e48251d3a9680449"'
+        name: nagios-3.0.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "28015fcdf84ca0d7d382394a82396927"'
+        name: nanoblogger-3.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "868e7b460bba6fe29a37aa0ceff851ba"'
+        name: netmrg-0.20
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0b2481ebc335a2d70fcf0cba0b3ce0fc"'
+        name: ntop-3.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c30bf7e6d4afe1f02969e0f523d7a251"'
+        name: nulog-2.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9a8035769d7a129b19feb275a33dc5b4"'
+        name: ocsinventory-server-1.01
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "75aeda7adbd012fa93c4ae80336b4f45"'
+        name: parrot-0.4.13-docs
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "70777a39f5d1de6d3873ffb309df35dd"'
+        name: pathological-1.1.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "82d746eb54b78b5449fbd583fc046ab2"'
+        name: perl-doc-html-5.10.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "90c244c893a963e3bb193d6043a347bd"'
+        name: phpgroupware-0.9.16.012
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4b30eec86e9910e663b5a9209e9593b6"'
+        name: phpldapadmin-1.1.0.5
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "02dd7453848213a7b5277556bcc46307"'
+        name: phpmyadmin-2.11.8.1-pmd
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d037ef2f629a22ddadcf438e6be7a325"'
+        name: phpmyadmin-2.11.8.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8190ead2eb45952151ab5065d0e56381"'
+        name: pootle-1.1.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ba84999dfc070065f37a082ab0e36017"'
+        name: prewikka-0.9.14
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0f45c2c79ebe90d6491ddb111e810a56"'
+        name: python-cherrypy-2.3.0-3.0.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e551b7017a9bd490fc5b76e833d689bf"'
+        name: moinmoin-1.7.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "275e2e37fc7be50c1f03661ef8b6ce4f"'
+        name: myghty-1.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "68b329da9893e34099c7d8ad5cb9c940"'
+        name: myghty-1.1-zblog
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5488c1c8bf5a2264b8d4c8541e2d5ccd"'
+        name: turbogears-1.0.4.4-genshi-elixir
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6927da350550f29bc641138825dff36f"'
+        name: python-werkzeug-0.3.1-docs
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e3f28aab904e9edfd015f64dc93d487d"'
+        name: python-werkzeug-0.3.1-cupoftee-examples
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "69f8a727f01a7e9b90a258bc30aaae6a"'
+        name: quantlib-refman-html-0.9.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b01625f4aa4cd64a180e46ef78f34877"'
+        name: quickplot-0.8.13
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "af83bba99d82ea47ca9dafc8341ec110"'
+        name: qwik-0.8.4.4ubuntu2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e9469705a8ac323e403d74c11425a62b"'
+        name: roundcube-0.1.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7f57bbd0956976e797b4e8eebdc6d733"'
+        name: selfhtml-8.1.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "69acfcb2659952bc37c54108d52fca70"'
+        name: solr-1.2.0-docs
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ffc05799dee87a4f8901c458f7291d73"'
+        name: solr-1.2.0-admin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "aa2253a32823c8a5cba8d479fecedd3a"'
+        name: sork-forwards-h3-3.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a2e38a3b0cdf875cd79017dcaf4f2b55"'
+        name: sork-passwd-h3-3.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "cb740847c45ea3fbbd80308b9aa4530a"'
+        name: sork-vacation-h3-3.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7c7b66d305e9377fa1fce9f9a74464d9"'
+        name: spe-0.8.4.h
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0e2503a23068aac350f16143d30a1273"'
+        name: sql-ledger-2.8.15
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1fd3fafc1d461a3d19e91dbbba03d0aa"'
+        name: tea-17.6.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4644f2d45601037b8423d45e13194c93"'
+        name: apache-tomcat-5.5.26-alfresco-community
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1de863a5023e7e73f050a496e6b104ab"'
+        name: torrentflux-2.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "83dea3d5d8c6feddec84884522b61850"'
+        name: torrentflux-2.4-themes-g4e
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d1bc9681dce4ad805c17bd1f0f5cee97"'
+        name: torrentflux-2.4-themes-blueflux
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8d13927efb22bbe7237fa64e858bb523"'
+        name: transmission-1.34
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5b015106854dc7be448c14b64867dfa5"'
+        name: tulip-3.0.0-b6
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ff260e80f5f9ca4b779fbd34087f13cf"'
+        name: horde-groupware-webmail-1.0.1-turba-theme-2.1.7
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e7fc436d0bf31500ced7a7143067c337"'
+        name: twiki-4.1.2-logos-favicon.ico
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9789c9ab400ea0b9ca8fcbd9952133bd"'
+        name: twiki-4.1.2-webpreferences
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2b52c1344164d29dd8fb758db16aadb6"'
+        name: vdr-plugin-live-0.2.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "237f837bbc33cd98a9f47b20b284e2ad"'
+        name: vdradmin-am-3.6.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6f7e92fe7e6a62661ac2b41528a78fc6"'
+        name: vlc-0.9.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2507c0b0a60ecdc816ba45482affaedf"'
+        name: webcheck-1.10.2.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ef5169b040925a716359d131afbea033"'
+        name: websvn-2.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f6d0a100b6dbeb5899f0975a1203fd85"'
+        name: witty-2.1.5
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "81feac35654318fb16d1a567b8b941e7"'
+        name: yaws-1.77
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "33b04fb9f2ec918f5f14b41527e77f6d"'
+        name: znc-0.058
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6434232d43f27ef5462ba5ba345e03df"'
+        name: znc-0.058-webadmin-skins-default
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e07c0775523271d629035dc8921dffc7"'
+        name: zoneminder-1.23.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4eb846f1286ab4e7a399c851d7d84cca"'
+        name: plone-cms-3.1.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e298e00b2ff6340343ddf2fc6212010b"'
+        name: nessus-4.x-scanner-web-client
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "240c36cd118aa1ff59986066f21015d4"'
+        name: lancom-systems
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ceb25c12c147093dc93ac8b2c18bebff"'
+        name: compact-5020-voip
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "05656826682ab3147092991ef5de9ef3"'
+        name: rapidshare
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e19ffb2bc890f5bdca20f10bfddb288d"'
+        name: rapid7-nexpose
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1f8c0b08fb6b556a6587517a8d5f290b"'
+        name: owasp.org
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "73778a17b0d22ffbb7d6c445a7947b92"'
+        name: apache-on-mac-os-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "799f70b71314a7508326d1d2f68f7519"'
+        name: jboss-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "bd0f7466d35e8ba6cedd9c27110c5c41"'
+        name: serena-collage-4.6-servlet-images-collage-app.ico
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "dc0816f371699823e1e03e0078622d75"'
+        name: aruba-network-devices-http-s-login-page
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f097f0adf2b9e95a972d21e5e5ab746d"'
+        name: citrix-access-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "28893699241094742c3c2d4196cd1acb"'
+        name: xerox-docushare
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "80656aabfafe0f3559f71bb0524c4bb3"'
+        name: macromedia-breeze
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "48c02490ba335a159b99343b00decd87"'
+        name: octeth-technologies-oempro-3.5.5.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "eb6d4ce00ec36af7d439ebd4e5a395d7"'
+        name: mailman
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "04d89d5b7a290334f5ce37c7e8b6a349"'
+        name: atlassian-jira-bug-tracker
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d80e364c0d3138c7ecd75bf9896f2cad"'
+        name: apache-tomcat-6.0.18-alfresco-enterprise-content-management-system
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a6b55b93bc01a6df076483b69039ba9c"'
+        name: fog-creek-fogbugz-6.1.44
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ee4a637a1257b2430649d6750cda6eba"'
+        name: trimble-device-embedded-web-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9ceae7a3c88fc451d59e24d8d5f6f166"'
+        name: plesk-managed-system
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "69ae01d0c74570d4d221e6c24a06d73b"'
+        name: roku-soundbridge
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2e9545474ee33884b5fb8a9a0b8806dd"'
+        name: ampache
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "639b61409215d770a99667b446c80ea1"'
+        name: lotus-domino-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "be6fb62815509bd707e69ee8dad874a1"'
+        name: i.lon-server-by-echelon
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a46bc7fc42979e9b343335bdd86d1c3e"'
+        name: netscout-ngenius
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "192decdad41179599a776494efc3e720"'
+        name: jboss-installation
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "de2b6edbf7930f5dd0ffe0528b2bbcf4"'
+        name: barracuda-spam-virus-firewall-appliance
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "386211e5c0b7d92efabd41390e0fc250"'
+        name: sparkweb-web-based-collaboration-client.-http
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f89abd3f358cb964d6b753a5a9da49cf"'
+        name: limesurvey
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a7947b1675701f2247921cf4c2b99a78"'
+        name: alexander-palmo-simple-php-blog
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "01febf7c2bd75cd15dae3aa093d80552"'
+        name: atlassian-crucible-or-fisheye
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1275afc920a53a9679d2d0e8a5c74054"'
+        name: atlassian-crowd
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "3341c6d3c67ccdaeb7289180c741a965"'
+        name: atlassian-confluence-or-crowd
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6c1452e18a09070c0b3ed85ce7cb3917"'
+        name: atlassian-jira
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a83dfece1c0e9e3469588f418e1e4942"'
+        name: atlassian-bamboo
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f0ee98b4394dfdab17c16245dd799204"'
+        name: drupal
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7b0d4bc0ca1659d54469e5013a08d240"'
+        name: netgear-infrant-readynas-nv
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "cee40c0b35bded5e11545be22a40e363"'
+        name: ossdl.de-openmailadmin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4f88ba9f1298701251180e6b6467d43e"'
+        name: xinit-systems-ltd.-openfiler
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4c3373870496151fd02a6f1185b0bb68"'
+        name: rpath-appliance-agent
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "95103d0eabcd541527a86f23b636e794"'
+        name: wordpress-multi-user-mu
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "64ca706a50715e421b6c2fa0b32ed7ec"'
+        name: parallels-plesk-control-panel
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "10bd6ad7b318df92d9e9bd03104d9b80"'
+        name: plone-cms
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e08333841cbe40d15b18f49045f26614"'
+        name: 21publish-blog
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e2cac3fad9fa3388f639546f3ba09bc0"'
+        name: invision-power-services-ip.board
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5ec8d0ecf7b505bb04ab3ac81535e062"'
+        name: telligent-community-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "83a1fd57a1e1684fafd6d2487290fdf5"'
+        name: pligg
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b7f98dd27febe36b7275f22ad73c5e84"'
+        name: moinmoin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "63b982eddd64d44233baa25066db6bc1"'
+        name: joomla
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "05bc6d56d8df6d668cf7e9e11319f4e6"'
+        name: jive-forums
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "63740175dae089e479a70c5e6591946c"'
+        name: the-lyceum-project
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4cbb2cfc30a089b29cd06179f9cc82ff"'
+        name: dragonfly
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9187f6607b402df8bbc2aeb69a07bbca"'
+        name: xoops
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a1c686eb6e771878cf6040574a175933"'
+        name: civicplus
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4d7fe200d85000aea4d193a10e550d04"'
+        name: intland-software-codebeamer
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1a9a1ec2b8817a2f951c9f1793c9bc54"'
+        name: bitweaver
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1cc16c64d0e471607677b036b3f06b6e"'
+        name: roller-weblogger-project
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7563f8c3ebd4fd4925f61df7d5ed8129"'
+        name: holger-zimmerman-pi3web-http-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7f0f918a78ca8d4d5ff21ea84f2bac68"'
+        name: subtext
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "86e3bf076a018a23c12354e512af3b9c"'
+        name: spyce
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9c003f40e63df95a2b844c6b61448310"'
+        name: dd-wrt-embedded-web-server
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9a9ee243bc8d08dac4448a5177882ea9"'
+        name: dvbbs-forum
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ee1169dee71a0a53c91f5065295004b7"'
+        name: projectpier
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7214637a176079a335d7ac529011f4e4"'
+        name: phpress
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1bf954ba2d568ec9771d35c94a6eb2dc"'
+        name: woltlab-burning-board
+        type: dsl
+        condition: and
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ff3b533b061cee7cfbca693cc362c34a"'
+        name: kayako-supportsuite
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "428b23df874b41d904bbae29057bdba5"'
+        name: comsenz-technology-ltd-ecshop
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9fac8b45400f794e0799d0d5458c092b"'
+        name: comsenz-technology-ltd-discuz
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4e370f295b96eef85449c357aad90328"'
+        name: comsenz-technology-ltd-supesite
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "4cfbb29d0d83685ba99323bc0d4d3513"'
+        name: phpwind-forums-7
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2df6edffca360b7a0fadc3bdf2191857"'
+        name: pips-technology-atz-executive-automatic-licence-plate-recognition-alpr-system
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8c291e32e7c7c65124d19eb17bceca87"'
+        name: schneider-electric-modicon-340-bmx-p34-cpu-b
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "09a1e50dc3369e031b97f38abddd10c8"'
+        name: ubiquiti-ubiquiti-m-series-airos
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7b345857204926b62951670cd17a08b7"'
+        name: axess-tmc-x1-or-x2-terminal
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "28c34462a074c5311492759435549468"'
+        name: acontent-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "705d63d8f6f485bd40528394722b5c22"'
+        name: atmail-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9f500a24ccbdda88cf8ae3ec7b61fc40"'
+        name: atomic-cms-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5b816961f19da96ed5a2bf15e79093cb"'
+        name: atutor-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f51425ace97f807fe5840c4382580fd5"'
+        name: beehive-forum-1.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "eb05f77bf80d66f0db6b1f682ff08bee"'
+        name: biscom-delivery-server-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5d27143fc38439baba39ba5615cbe9ef"'
+        name: cascade-server-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0c53ef3d151cbac70a8486dd1ebc8b25"'
+        name: chamilo-e-learning-system-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9939a032a9845e4d931d14e08f5a6c7c"'
+        name: citrix-xenapp-logon
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6c633b9b92530843c782664cb3f0542d"'
+        name: clipbucket-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a59c6fead5d55050674f327955df3acb"'
+        name: couchpotato-2.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "107579220745d3b21461c23024d6c4a3"'
+        name: d-link-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c86974467c2ac7b6902189944f812b9a"'
+        name: domain-technology-control-0.17.x-0.24.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d9aa63661d742d5f7c7300d02ac18d69"'
+        name: dreambox-webcontrol-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a4819787db1dabe1a6b669d5d6df3bfd"'
+        name: drupal-2.x-4.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b6341dfc213100c61db4fb8775878cec"'
+        name: drupal-7.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0a99a23f6b1f1bddb94d2a2212598628"'
+        name: maraschino-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "51b916bdaf994ce73d3e5e6dfe2a46ee"'
+        name: feng-office-2.3
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d134378a39c722e941ac25eed91ca93b"'
+        name: freepbx-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "45210ace96ce9c893f8c27c5decab10d"'
+        name: fritz-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "835306119474fefb6b38ae314a37943a"'
+        name: horde-agora-forum-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b64a1155b80e0b06272f8b842b83fa57"'
+        name: horde-ansel-photo-manager-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0e6a6ed665a9669b368d9a90b87976a9"'
+        name: horde-gollem-file-manager-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6c18a6e983f64b6a6ed0a32c9e8a19b6"'
+        name: hp-procurve-webserver-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6acfee4c670580ebf06edae40631b946"'
+        name: iomega-storcenter-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "1f9c39ef3f740eebb046c900edac4ba5"'
+        name: iomega-storcenter-ix2-200-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "37a99d2ddea8b49f701db457b9a8ffed"'
+        name: iomega-storcenter-ix4-200d-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e7dce6ac6d8713a0b98407254ca33f80"'
+        name: iomega-storcenter-ix4-300d-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f08d232927ab8f2c661616b896928233"'
+        name: iomega-storcenter-px2-300d-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9d203fbb74eabf67f48b965ba5acc9a6"'
+        name: iomega-storcenter-px4-300d-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "fbd140da4eff02b90c9ebcbdb3736322"'
+        name: iomega-storcenter-px4-300r-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "fd3f689b804ddb7bfab53fdf32bf7c04"'
+        name: iomega-storcenter-px6-300d-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8dfab2d881ce47dc41459c6c0c652bcf"'
+        name: iomega-storcenter-px12-350r-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "66dcdd811a7d8b1c7cd4e15cef9d4406"'
+        name: iomega-storcenter-px12-400r-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a7fe149a9f2582f38576d14d9b1f0f55"'
+        name: lacie-dashboard-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2ba9b777483da0a6a8b29c4ab39a10b2"'
+        name: magicmail-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "701bb703b31f99da18251ca2e557edf0"'
+        name: mantis-bug-tracker-1.2.9-1.2.15
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d4af3be33d952c1f98684d985019757c"'
+        name: moodle-2.0-magazine
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b88c0eedc72d3bf4e86c2aa0a6ba6f7b"'
+        name: nas4free-9.0
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "11abb4301d06dccc36d1b5f6dcad093e"'
+        name: ntop-3.3.6-5.0.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b9d28bd6822d2e09e01aa0af5d7ccc34"'
+        name: ocportal-9.0.5
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "eec3051d5c356d1798bea1d8a3617c51"'
+        name: octopress-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "9c34a7481ba0c153bb3e2a10e0ea811e"'
+        name: openwebif-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "49bf194d1eccb1e5110957d14559d33d"'
+        name: otrs-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d361075db94bb892ff3fb3717714b2da"'
+        name: phpmybackuppro-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a456dd2bae5746beb68814a5ac977048"'
+        name: phpsysinfo-3.0.7
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6e0c5b7979e9950125c71341e0960f65"'
+        name: phpsysinfo-3.0.8-3.0.12
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ddcc65196f0bc63a90c885bd88ecbb81"'
+        name: phpsysinfo-3.0.12-3.0.20-3.1.0-3.1.4
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ba4bfe5d1deb2b4410e9eb97c5b74c9b"'
+        name: puppet-node-manager-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "368c15ac73f0096aa3daff8ff6f719f8"'
+        name: redaxscript-1.0-1.2.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "6d85758acb4f4baa4d242ba451c91026"'
+        name: redmine-x-request-tracker-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "228ba3f6d946af4298b080e5c934487c"'
+        name: roundcube-webmail-0.6-0.7-default-0.8-0.9-classic-0.8-0.9-larry
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ed8cf53ef6836184587ee3a987be074a"'
+        name: ruckus-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f6c5f5e8857ecf561029fc5da005b6e3"'
+        name: sophos-email-appliance-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f682dbd4d0a18dd7699339b8adb28c0f"'
+        name: qnap-turbonas-3.8.x-admin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7ff45523a7ee9686d3d391a0a27a0b4f"'
+        name: qnap-turbonas-4.0.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a967c8bfde9ea0869637294b679b7251"'
+        name: squid-proxy-server-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "bc18566dcc41a0ff503968f461c4995a"'
+        name: subrion-cms-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "531e652a15bc0ad59b6af05019b1834a"'
+        name: synology-dsm-4.2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "0ec12e5820517d3b62e56b9a8f1ee5bc"'
+        name: tradingeye-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "300b5c3f134d7ec0bca862cf113149d8"'
+        name: tversity-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "8718c2998236c796896b725f264092ee"'
+        name: typo3-6.1
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "7350c3f75cb80e857efa88c2fd136da5"'
+        name: ushahidi-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "2e5e985fe125e3f8fca988a86689b127"'
+        name: visec-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "d90cc1762bf724db71d6df86effab63c"'
+        name: vtiger-crm-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "b14353fafda7c90fb1a2a214c195de50"'
+        name: weberp-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "18fe76b96d4eae173bf439a9712fa5c1"'
+        name: wikiwebhelp-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e44d22b74f7ee4435e22062d5adf4a6a"'
+        name: wordpress-2.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "3ead5afa19537170bb980924397b70d6"'
+        name: wordpress-3.x-twenty-ten
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "28a122aa74f6929b0994fc544555c0b1"'
+        name: wordpress-3.2-3.x-twenty-eleven
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "e9dd9992d222d67c8f6a4704d2c88bdd"'
+        name: zarafa-webaccess-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "c126f7e761813946fea2e90ff7ddb838"'
+        name: zenoss-core-x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "5a77e47fa23554a4166d2303580b0733"'
+        name: sawmill
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "a4eb4e0aa80740db8d7d951b6d63b2a2"'
+        name: owncloud
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "531b63a51234bb06c9d77f219eb25553"'
+        name: phpmyadmin-4.6.x
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "ef9c0362bf20a086bb7c2e8ea346b9f0"'
+        name: roundcube-webmail-1.0.0-skins-classic-and-larry
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "f1ac749564d5ba793550ec6bdc472e7c"'
+        name: roundcube-webmail-1.4.0-elastic-skin
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "23e8c7bd78e8cd826c5a6073b15068b1"'
+        name: jenkins
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "57f501d6fee2fdb024795abbdb750ad5"'
+        name: hak5-cloud-c2
+        type: dsl
+        condition: and
+
+      - dsl:
+          - 'status_code == 200'
+          - 'contains(tolower(all_headers), "content-type: image/")'
+          - 'md5(body) == "297a81069094d00a052733d3a0537d18"'
+        name: crushftp
+        type: dsl
+        condition: and
