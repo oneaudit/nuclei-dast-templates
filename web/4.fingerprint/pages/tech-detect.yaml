@@ -3553,6 +3553,12 @@ http:
         part: header
 
       - type: word
+        name: jetty
+        words:
+          - "Powered By Jetty"
+        part: body
+
+      - type: word
         name: nginx
         words:
           - "Server: nginx"

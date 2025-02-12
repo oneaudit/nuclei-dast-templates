@@ -1,14 +1,10 @@
-id: html-comments-detect
+id: form-detect
 
 info:
-  name: HTML Comments Detection
+  name: Form Detection
   author: anonymous
   severity: info
-  tags: html,comments,noisy
-
-flow: |
-  http()
-  javascript()
+  tags: html,forms,noisy
 
 http:
   - pre-condition:
@@ -26,17 +22,16 @@ http:
           - ""
 
     matchers:
-      - type: regex
-        internal: true
-        regex:
-        - "<!--"
+      - type: word
         part: body
-
-javascript:
-  - code: |
-      template.http_body.replace(/[\n\r]/g, '\\n').match(/<!--.*?-->/g)
+        words:
+          - "<form"
+          - "</form>"
+        condition: and
 
     extractors:
       - type: regex
+        part: body
+        group: 1
         regex:
-        - "<!--(.*)-->"
+          - '(?i)form.*action="([^">]+)"'
