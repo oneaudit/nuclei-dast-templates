@@ -4,7 +4,7 @@ info:
   name: Detect cookies present in the response
   author: anonymous
   severity: info
-  tags: http,noisy,cookie
+  tags: generic,noisy,cookie
 
 http:
   - pre-condition:

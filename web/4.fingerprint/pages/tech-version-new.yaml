@@ -4,7 +4,7 @@ info:
   name: Tech version detect (helper)
   author: anonymous
   severity: info
-  tags: http,tech,noisy
+  tags: generic,tech,noisy
 
 flow: |
   http()
