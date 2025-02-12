@@ -24,12 +24,16 @@ http:
     matchers-condition: or
     matchers:
       # Modified
+      # Multiple entries are only using "Server: "
+      # Using "server:" may not be relevant.
       - type: word
         name: apache
         words:
           - "Server: Apache"
+          - "server: Apache"
         condition: or
         part: header
+
       # Not Modified
       - type: regex
         name: mollom

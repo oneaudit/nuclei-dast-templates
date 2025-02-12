@@ -31,6 +31,7 @@ http:
           - "PHP/"
           - "Python/"
           - "Werkzeug/"
+          - "Jetty("
 
     extractors:
       - type: regex
@@ -67,3 +68,10 @@ http:
         group: 1
         regex:
           - "Werkzeug/([0-9.]+)"
+
+      - type: regex
+        part: header
+        name: jetty
+        group: 1
+        regex:
+          - "Jetty[(]([0-9.v]+)[)]"
