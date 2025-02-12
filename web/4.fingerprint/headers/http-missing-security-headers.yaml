@@ -8,7 +8,7 @@ info:
     This template searches for missing HTTP security headers. The impact of these missing headers can vary.
   metadata:
     max-request: 1
-  tags: generic,miscellaneous,noisy
+  tags: generic,headers,noisy,miscellaneous
 
 http:
   - pre-condition:

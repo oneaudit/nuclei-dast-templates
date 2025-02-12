@@ -18,7 +18,7 @@ info:
   metadata:
     verified: true
     max-request: 1
-  tags: generic,noisy,miscellaneous
+  tags: generic,cookie,noisy,miscellaneous
 
 flow: |
     http()
