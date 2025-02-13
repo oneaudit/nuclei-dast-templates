@@ -1,8 +1,8 @@
-id: http-suspicious-headers
+id: http-suspicious-response-headers
 
 info:
   author: anonymous
-  name: Test the favicon against known favicons
+  name: Detect custom headers in responses
   severity: info
   tags: generic,headers,noisy,miscellaneous
 
