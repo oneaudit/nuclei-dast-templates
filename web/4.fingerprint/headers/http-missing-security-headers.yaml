@@ -14,9 +14,7 @@ http:
   - pre-condition:
       - type: dsl
         dsl:
-          - 'method != "HEAD"'
-          - 'method != "OPTIONS"'
-        condition: and
+          - 'True'
 
     fuzzing:
       - part: header

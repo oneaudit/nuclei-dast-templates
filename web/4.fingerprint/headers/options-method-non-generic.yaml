@@ -11,10 +11,11 @@ flow: |
   javascript()
 
 http:
+  # This template doesn't listen to the openapi data
   - pre-condition:
       - type: dsl
         dsl:
-          - 'method == "OPTIONS"'
+          - 'False'
 
     fuzzing:
       - part: header
