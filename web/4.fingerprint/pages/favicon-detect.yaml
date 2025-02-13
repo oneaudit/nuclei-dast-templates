@@ -21,21 +21,13 @@ http:
         fuzz:
           - ""
 
-    matchers-condition: or
+    stop-at-first-match: true
     matchers:
       - dsl:
           - 'status_code == 200'
           - 'contains(tolower(all_headers), "content-type: image/")'
           - 'md5(body) == "b0a102991e7332643ae57365023c00c8"'
         name: code-igniter
-        type: dsl
-        condition: and
-
-      - dsl:
-          - 'status_code == 200'
-          - 'contains(tolower(all_headers), "content-type: image/")'
-          - 'md5(body) == "92c1d4e5252982e7ca42aaa969434a6b"'
-        name: fider
         type: dsl
         condition: and
 
