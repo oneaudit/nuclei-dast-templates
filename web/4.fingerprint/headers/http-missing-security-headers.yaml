@@ -11,12 +11,7 @@ info:
   tags: generic,headers,noisy,miscellaneous
 
 http:
-  - pre-condition:
-      - type: dsl
-        dsl:
-          - 'True'
-
-    fuzzing:
+  - fuzzing:
       - part: header
         type: postfix
         mode: single

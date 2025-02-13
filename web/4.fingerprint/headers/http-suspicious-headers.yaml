@@ -4,7 +4,7 @@ info:
   author: anonymous
   name: Test the favicon against known favicons
   severity: info
-  tags: generic,eheaders,noisy,miscellaneous
+  tags: generic,headers,noisy,miscellaneous
 
 flow: |
   http()

@@ -46,7 +46,7 @@ http:
 
 javascript:
   - code: |
-      template.found.split(',').filter(v => !["GET", "HEAD", "OPTIONS"].includes(v.trim()))
+      template.found?.split(',').filter(v => !["GET", "HEAD", "OPTIONS"].includes(v.trim()))
 
     extractors:
       - type: regex
