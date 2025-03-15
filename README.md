@@ -115,7 +115,7 @@ http:
           - "(request)"
 ```
 
-Then, we will have to send the arbitrary request.
+Then, we can send arbitrary requests.
 
 ```yaml
   - method: GET
@@ -132,3 +132,5 @@ Finally, at the start of the template, we will link the two requests with a cond
 ```yaml
 flow: http(1) && http(2)
 ```
+
+⚠️ The `nuclei-ng` tool passes a variable named `ServerRoot` to Nuclei using the `-var` option. This variable contains the server URL specified in the OpenAPI file. While it can be utilized in matchers, it cannot be used in preconditions due to a limitation with Nuclei. With that in mind, we must **avoid using** expressions like `path == "/"` in templates, as the web server root may differ from the OpenAPI server root.
