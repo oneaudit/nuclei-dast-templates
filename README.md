@@ -88,3 +88,51 @@ For instance, in `source-map-js.yaml`, we only inspect JavaScript files to see i
         status:
           - 200
 ```
+
+**Fallback**
+
+We may want to make arbitrary requests after applying pre-conditions. For instance, `If the URL ends with '.js' then try to append '.map'`.
+
+To achieve this, we have to write a lengthy template. First, will add an initial request to check the extension.
+
+```yaml
+http:
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'line_ends_with(tolower(path), ".js")'
+        condition: and
+
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: single
+        keys:
+          - User-Agent
+        fuzz:
+          - "(request)"
+```
+
+Then, we will have to send the arbitrary request.
+
+```yaml
+  - method: GET
+    path:
+      - "{{BaseURL}}.map"
+
+    stop-at-first-match: true
+    matchers-condition: or
+    matchers: 
+    - type: dsl
+      name: file
+      dsl:
+        - "contains_all(body, \"sources\", \"sources\")"
+        - "status_code == 200"
+      condition: and
+```
+
+Finally, at the start of the template, we will link the two requests with a condition `AND` ensuring the second is only executed if the first matched.
+
+```yaml
+flow: http(1) && http(2)
+```
