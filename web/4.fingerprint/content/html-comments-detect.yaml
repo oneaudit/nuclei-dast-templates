@@ -22,21 +22,37 @@ http:
       - part: header
         type: postfix
         mode: single
+        keys:
+          - User-Agent
         fuzz:
-          - ""
+          - "(proxy)"
 
     matchers:
       - type: regex
         internal: true
         regex:
-        - "<!--"
+          - "<!--"
         part: body
+
+    extractors:
+      - type: dsl
+        internal: true
+        name: _loc
+        dsl:
+          - http_location
+          - path
+          - replace(concat(Path, "/", File), "//", "/")
 
 javascript:
   - code: |
-      template.http_body.replace(/[\n\r]/g, '\\n').match(/<!--.*?-->/g)
+      const comments = template.http_body.replace(/[\n\r]/g, '\\n').match(/<!--.*?-->/g)
+      if (comments && comments.length > 0) {
+        if (Array.isArray(template._loc)) { template._loc = template._loc.sort((a, b) => b.length - a.length)[0] }
+        comments.push(`oneaudit:${template._loc}`)
+      }
+      comments?.join('\n')
 
     extractors:
       - type: regex
         regex:
-        - "<!--(.*)-->"
+          - '.+'

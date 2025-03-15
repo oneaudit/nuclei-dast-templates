@@ -1,0 +1,83 @@
+# original: https://github.com/projectdiscovery/nuclei-templates/blob/main/http/vulnerabilities/generic/cors-misconfig.yaml
+id: cors-detect
+
+info:
+  name: CORS Detection
+  author: anonymous
+  severity: info
+  tags: generic,fuzzing
+
+flow: http(1) && http(2)
+
+http:
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+        condition: and
+
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: single
+        keys:
+          - User-Agent
+        fuzz:
+          - "(proxy)"
+
+    matchers:
+      - type: dsl
+        name: checked
+        dsl:
+          - "contains(tolower(header), 'access-control-allow-origin:')"
+          - "contains(tolower(header), 'access-control-allow-credentials:')"
+        condition: or
+
+  - payloads:
+      cors_origin:
+        - "https://example.com" # Arbitrary domain
+#        - "https://example{{Host}}" # Arbitrary domain
+#        - "http://example{{Host}}" # Arbitrary domain
+#        - "https://{{FQDN}}.example.com" # Arbitrary domain
+#        - "https://{{FQDN}}example.com" # Arbitrary domain
+#        - "https://localhost.example.com" # Localhost regex implementation edge case
+#        - "http://localhost.example.com" # Localhost regex implementation edge case over http
+#        - "http://s{{Host}}" # Unencrypted domain ends with
+#        - "https://{{FQDN}}_.example.com" # Arbitrary domain
+#        - "https://{{FQDN}}%60.example.com" # Arbitrary domain
+#        - "https://{{FQDN}}.$.example.com" # Firefox and Safari allows $ as subdomain
+#        - "https://{{FQDN}}.~.example.com" # Safari allows ~ as subdomain
+#        - "https://{{FQDN}}.=.example.com" # Safari allows = as subdomain
+#        - "https://{{FQDN}}.+.example.com" # Firefox and Safari allows + as subdomain
+#        - "https://{{FQDN}}.&.example.com" # Safari allows & as subdomain
+#        - "https://{{FQDN}}.*.example.com" # Safari allows * as subdomain
+#        - "https://{{FQDN}}.).example.com" # Safari allows ) as subdomain
+#        - "https://{{FQDN}}.(.example.com" # Safari allows ( as subdomain
+#        - "https://{{FQDN}}.'.example.com" # Safari allows ' as subdomain
+#        - "https://{{FQDN}}.!.example.com" # Safari allows ! as subdomain
+#        - "https://{{FQDN}}.;.example.com" # Safari allows ; as subdomain
+#        - "https://{{FQDN}}.,.example.com" # Safari allows , as subdomain
+#        - "https://{{FQDN}}.-.example.com" # Arbitrary domain
+#        - "https://{{FQDN}}._.example.com" # Arbitrary domain
+        - "null" # null origin
+#        - "https://example.{{Host}}" # Arbitrary subdomain
+#        - "http://example.{{Host}}" # Arbitrary subdomain over http
+#        - "https://{{replace(FQDN,'.','a')}}" # Replace . by a random character to abuse if regex is used
+#        - "http://{{replace(FQDN,'.','a')}}" # Replace . by a random character to abuse if regex is used
+
+    fuzzing:
+      - part: header
+        type: replace
+        mode: single
+        keys:
+          - "Origin"
+        fuzz:
+          - "{{ cors_origin }}"
+
+    stop-at-first-match: true
+    matchers:
+      - type: dsl
+        name: exploited
+        dsl:
+          - "contains(tolower(header), 'access-control-allow-origin: {{cors_origin}}')"

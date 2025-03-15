@@ -1,4 +1,6 @@
-# original: https://github.com/projectdiscovery/nuclei-templates/blob/main/http/miscellaneous/email-extractor.yaml
+# original:
+# - https://github.com/projectdiscovery/nuclei-templates/blob/main/http/miscellaneous/email-extractor.yaml
+# - https://github.com/projectdiscovery/nuclei-templates/blob/main/http/miscellaneous/security-txt.yaml
 id: email-detect
 
 info:
@@ -13,18 +15,20 @@ http:
         dsl:
           - 'method != "HEAD"'
           - 'method != "OPTIONS"'
+          - '!line_ends_with(tolower(path), "/composer.phar")'
         condition: and
 
     fuzzing:
-      - part: query
+      - part: header
         type: postfix
         mode: single
+        keys:
+          - User-Agent
         fuzz:
-          - ""
+          - "(proxy)"
 
     extractors:
       - type: regex
-        name: Extract Emails
         part: body
         regex:
           - '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}'

@@ -1,0 +1,97 @@
+id: source-map-js
+
+info:
+  name: JavaScript Source .map Files Disclosure
+  author: anonymous
+  severity: low
+  tags: javascript,crazy
+
+flow: |
+  http(1)
+  http(2) || (http(3) && http(4))
+
+variables:
+  fuzzing: &fuzzing
+    - part: header
+      type: postfix
+      mode: single
+      keys:
+        - User-Agent
+      fuzz:
+        - "(proxy)"
+
+  matchers: &matchers
+    - type: dsl
+      name: file
+      dsl:
+        - "contains_all(body, \"sources\", \"sources\")"
+        - "status_code == 200"
+      condition: and
+
+http:
+  # Detect sourceMappingURL from JavaScript files
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+          - 'line_ends_with(tolower(path), ".js")'
+        condition: and
+
+    fuzzing: *fuzzing
+    stop-at-first-match: true
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "sourceMappingURL="
+        condition: and
+
+      - type: status
+        status:
+          - 200
+
+    extractors:
+      - type: regex
+        group: 1
+        name: name
+        regex:
+          - "sourceMappingURL=(.+)"
+
+  # Analyse Detected Map Files
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+          - 'line_ends_with(tolower(path), ".js.map")'
+        condition: and
+
+    fuzzing: *fuzzing
+    stop-at-first-match: true
+    matchers-condition: or
+    matchers: *matchers
+
+  # Any .js may have a .map
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'line_ends_with(tolower(path), ".js")'
+        condition: and
+
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: single
+        keys:
+          - User-Agent
+        fuzz:
+          - "(request)"
+
+  - method: GET
+    path:
+      - "{{BaseURL}}.map"
+
+    stop-at-first-match: true
+    matchers-condition: or
+    matchers: *matchers

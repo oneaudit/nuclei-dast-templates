@@ -4,7 +4,7 @@ info:
   author: anonymous
   name: Detect custom headers in requests
   severity: info
-  tags: generic,headers,noisy,miscellaneous,yuyu
+  tags: generic,headers,noisy,miscellaneous
 
 flow: |
   http()
@@ -12,63 +12,59 @@ flow: |
 
 variables:
   http_headers:
-    - "a-im"
-    - "accept"
-    - "accept-charset"
-    - "accept-datetime"
-    - "accept-encoding"
-    - "accept-language"
-    - "access-control-request-method"
-#    - "authorization"
-    - "cache-control"
-    - "connection"
-    - "content-encoding"
-    - "content-length"
-    - "content-md5"
-    - "content-type"
-    - "cookie"
-    - "date"
-    - "expect"
-    - "forwarded"
-    - "from"
-    - "host"
-    - "http2-settings"
-    - "if-match"
-    - "if-modified-since"
-    - "if-none-match"
-    - "if-range"
-    - "if-unmodified-since"
-    - "max-forwards"
-    - "origin"
-    - "pragma"
-    - "prefer"
-#    - "proxy-authorization"
-    - "range"
-    - "referer"
-    - "te"
-    - "trailer"
-    - "transfer-encoding"
-    - "user-agent"
-    - "upgrade"
-    - "via"
-    - "warning"
-    - "upgrade-insecure-requests"
-    - "x-requested-with"
-    - "dnt"
-    - "x-forwarded-for"
-    - "x-forwarded-host"
-    - "x-forwarded-proto"
-    - "front-end-https"
-#    - "x-http-method-override"
-    - "x-att-deviceid"
-    - "x-wap-profile"
-    - "proxy-connection"
-    - "x-uidh"
-    - "x-csrf-token"
-    - "x-request-id"
-    - "x-correlation-id"
-    - "save-data"
-    - "sec-gpc"
+    - a-im
+    - accept
+    - accept-charset
+    - accept-datetime
+    - accept-encoding
+    - accept-language
+    - cache-control
+    - connection
+    - content-encoding
+    - content-length
+    - content-md5
+    - content-type
+    - date
+    - expect
+    - forwarded
+    - from
+    - host
+    - http2-settings
+    - if-match
+    - if-modified-since
+    - if-none-match
+    - if-range
+    - if-unmodified-since
+    - max-forwards
+    - origin
+    - pragma
+    - prefer
+    - range
+    - referer
+    - te
+    - trailer
+    - transfer-encoding
+    - user-agent
+    - upgrade
+    - via
+    - warning
+    - upgrade-insecure-requests
+    - x-requested-with
+    - dnt
+    - x-forwarded-for
+    - x-forwarded-host
+    - x-forwarded-proto
+    - front-end-https
+    - x-att-deviceid
+    - x-wap-profile
+    - proxy-connection
+    - x-uidh
+    - x-csrf-token
+    - x-request-id
+    - x-correlation-id
+    - save-data
+    - priority
+    - cookie
 
 http:
   - pre-condition:
@@ -82,23 +78,41 @@ http:
       - part: header
         type: postfix
         mode: single
+        keys:
+          - User-Agent
         fuzz:
-          - ""
+          - "(request)"
+
+    extractors:
+      - type: dsl
+        internal: true
+        name: _loc
+        dsl:
+          - http_location
+          - path
+          - replace(concat(Path, "/", File), "//", "/")
 
 javascript:
   - code: |
-      template.http_request.split(/\r\n/).filter(line => {
+      const headers = template.http_request.split(/\r\n/).filter(line => {
           if (!line.includes(':')) {
             return false
           }
-    
+      
           let header_name = line.split(':')[0].trim().toLowerCase()
           if (!/^[a-z0-9\-]+$/.test(header_name)) { 
             return false
           }
       
           return !template.http_headers.includes(header_name)
-      }).join('\n')
+      })
+
+      if (headers.length > 0) {
+        if (Array.isArray(template._loc)) { template._loc = template._loc.sort((a, b) => b.length - a.length)[0] }
+        headers.push(`oneaudit:${template._loc}`)
+      }
+
+      headers.join('\n')
     extractors:
       - type: regex
         regex:

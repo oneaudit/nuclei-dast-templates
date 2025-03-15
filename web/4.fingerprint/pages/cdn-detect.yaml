@@ -1,0 +1,49 @@
+id: cdn-detect
+
+info:
+  name: Detect CDNs
+  author: anonymous
+  severity: info
+  tags: html,tech,noisy
+
+http:
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+        condition: and
+
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: single
+        keys:
+          - User-Agent
+        fuzz:
+          - "(proxy)"
+
+    matchers:
+      - type: word
+        name: cdnjs
+        part: body
+        words:
+          - "\"https://cdnjs.cloudflare.com/"
+
+      - type: word
+        name: jquery-cdn
+        part: body
+        words:
+          - "\"https://code.jquery.com/"
+
+      - type: word
+        name: jsdelivr
+        part: body
+        words:
+          - "\"https://cdn.jsdelivr.net/"
+
+      - type: word
+        name: unpkg
+        part: body
+        words:
+          - "\"https://unpkg.com/"
