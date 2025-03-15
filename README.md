@@ -91,9 +91,11 @@ For instance, in `source-map-js.yaml`, we only inspect JavaScript files to see i
 
 **Fallback**
 
-We may want to make arbitrary requests after applying pre-conditions. For instance, `If the URL ends with '.js' then try to append '.map'`.
+We may want to make arbitrary requests after applying pre-conditions. 
 
-To achieve this, we have to write a lengthy template. First, will add an initial request to check the extension.
+For instance, `If the URL ends with '.js' then try to append '.map'`.
+
+First, will add an initial request to check the extension.
 
 ```yaml
 http:
