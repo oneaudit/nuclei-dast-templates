@@ -9,7 +9,7 @@ When utilizing input file formats like burp or openapi with [Nuclei](https://git
 
 This repository only contains DAST templates, meaning that the `-dast` flag is required for execution with [Nuclei](https://github.com/projectdiscovery/nuclei). While these templates are classified as fuzzing templates, they do not necessarily perform fuzzing on the target; rather, they are designed to be executed when the `-dast` option is used.
 
-## Usage 🛣️
+## Usage With Nuclei ✨
 
 When used with [nuclei-ng](https://github.com/oneaudit/nuclei-ng) with its test server, we have the results below.
 
@@ -38,7 +38,53 @@ When used with [nuclei-ng](https://github.com/oneaudit/nuclei-ng) with its test 
 [html-comments-detect] [javascript] [info] Found on 1 URLs ["<!--\\n[HttpException]: Failed to start monitoring changes to &#39;\\\\SecretShare\\Website\\Admin&#39; because access is denied.\\n   at ...\\n[ConfigurationErrorsException]: An error occurred loading a configuration file: Failed to start monitoring changes to &#39;\\\\SecretShare\\Website\\Admin&#39; because access is denied. (\\\\SecretShare\\Website\\Admin\\web.config)\\n   at ...\\n-->"] [/aspNetErrorPage]
 ```
 
-
 ## Developer Notes ✍️
 
-...
+Most of the templates displayed in the [nuclei-ng](https://github.com/oneaudit/nuclei-ng) README are private. Users have to create their own templates, although some kind individuals may choose to share theirs.
+
+**Fake Fuzzing Logic**
+
+Each template should have a fuzzing section. We can use `(proxy)` to allow the reuse of cached responses. We can use `(request)` when we don't need the response. This save time and reduce the number of requests sent.
+
+```yaml
+    fuzzing:
+      - part: header
+        type: postfix
+        mode: multiple
+        keys:
+          - User-Agent
+        fuzz:
+          - "(proxy)"
+```
+
+📚 Such template will result in only ONE request.
+
+**Template Filtering**
+
+As of the time of writing, nuclei template "preconditions" are only available to fuzzing templates. Moreover, they are limited as some variables are not available in the DSL instruction block.
+
+Preconditions should be used to limit the number of requests by only analyzing responses matching the precondition.
+
+For instance, inside `source-map-js.yaml`, we will only inspect JavaScript files to see if they contain `sourceMappingURL=`.
+
+```yaml
+  - pre-condition:
+      - type: dsl
+        dsl:
+          - 'method != "HEAD"'
+          - 'method != "OPTIONS"'
+          - 'line_ends_with(tolower(path), ".js")'
+        condition: and
+    
+    ...SNIP...
+
+    matchers:
+      - type: word
+        words:
+          - "sourceMappingURL="
+        condition: and
+
+      - type: status
+        status:
+          - 200
+```
