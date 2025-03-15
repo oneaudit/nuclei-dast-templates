@@ -40,7 +40,7 @@ When used with [nuclei-ng](https://github.com/oneaudit/nuclei-ng) with its test 
 
 ## Developer Notes ✍️
 
-Most of the templates displayed in the [nuclei-ng](https://github.com/oneaudit/nuclei-ng) README are private. Users have to create their own templates, although some kind individuals may choose to share theirs.
+Most of the templates displayed in the [nuclei-ng](https://github.com/oneaudit/nuclei-ng) README are **private** and I won't share them 😔. Users have to create their own templates, although some kind individuals may choose to share theirs.
 
 **Fake Fuzzing Logic**
 
@@ -57,7 +57,7 @@ Each template should have a fuzzing section. We can use `(proxy)` to allow the r
           - "(proxy)"
 ```
 
-📚 Such template will result in only ONE request.
+📚 Nuclei is "fooled" as such template will result in only **ONE request**. The internal proxy adds a random User-Agent before sending the request or forwarding it.
 
 **Template Filtering**
 
