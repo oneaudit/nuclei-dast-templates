@@ -122,16 +122,10 @@ Then, we will have to send the arbitrary request.
 
     stop-at-first-match: true
     matchers-condition: or
-    matchers: 
-    - type: dsl
-      name: file
-      dsl:
-        - "contains_all(body, \"sources\", \"sources\")"
-        - "status_code == 200"
-      condition: and
+    matchers: ...SNIP...
 ```
 
-Finally, at the start of the template, we will link the two requests with a condition `AND` ensuring the second is only executed if the first matched.
+Finally, at the start of the template, we will link the two requests with a condition `AND`. This will ensure that the second request is only executed if the first matched <small>(e.g. the precondition if there is no matchers)</small>.
 
 ```yaml
 flow: http(1) && http(2)
