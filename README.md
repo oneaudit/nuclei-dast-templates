@@ -57,15 +57,15 @@ Each template should have a fuzzing section. We can use `(proxy)` to allow the r
           - "(proxy)"
 ```
 
-📚 Nuclei is "fooled" as such template will result in only **ONE request**. The internal proxy adds a random User-Agent before sending the request or forwarding it.
+📚 Nuclei is "fooled" as such template will result in only **ONE request**. The internal proxy adds a random User-Agent before sending the request or forwarding it to another proxy.
 
 **Template Filtering**
 
 As of the time of writing, nuclei template "preconditions" are only available to fuzzing templates. Moreover, they are limited as some variables are not available in the DSL instruction block.
 
-Preconditions should be used to limit the number of requests by only analyzing responses matching the precondition.
+Preconditions should be used to limit the number of requests by only allowing some paths.
 
-For instance, inside `source-map-js.yaml`, we will only inspect JavaScript files to see if they contain `sourceMappingURL=`.
+For instance, in `source-map-js.yaml`, we only inspect JavaScript files to see if they contain `sourceMappingURL=`.
 
 ```yaml
   - pre-condition:
